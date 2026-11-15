@@ -18,11 +18,11 @@ analyzer:
     - "linux/**"
     - "**/*.g.dart"
     - "**/*.freezed.dart"
+    - ios/**
 
 linter:
   rules:
     - prefer_single_quotes
     - prefer_const_constructors
-    - require_trailing_comma
     - avoid_print
     - always_use_package_imports

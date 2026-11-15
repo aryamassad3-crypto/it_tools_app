@@ -40,6 +40,8 @@ dependencies:
   # Date & Currency Formatting
   intl: ^0.20.3
   google_fonts: ^9.0.0
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:

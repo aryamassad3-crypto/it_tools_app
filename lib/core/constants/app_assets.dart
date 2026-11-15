@@ -10,4 +10,8 @@ class AppAssets {
   static const String onboarding1 = '$imagesBase/onboarding/onboarding_1.png';
   static const String onboarding2 = '$imagesBase/onboarding/onboarding_2.png';
   static const String onboarding3 = '$imagesBase/onboarding/onboarding_3.png';
+
+  //Banners
+  static const String homeBanner1 = 'assets/images/home_banner_1.png';
+  static const String homeBanner2 = 'assets/images/home_banner_2.png';
 }

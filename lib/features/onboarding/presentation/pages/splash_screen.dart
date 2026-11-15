@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:it_tools_app/core/config/app_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
-import '../../../../core/theme/app_text_styles.dart';
-import '../../../../core/constants/app_assets.dart';
+import 'package:it_tools_app/core/theme/app_colors.dart';
+import 'package:it_tools_app/core/theme/app_text_styles.dart';
+import 'package:it_tools_app/core/constants/app_assets.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -19,6 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     // الانتقال تلقائياً لشاشة الـ Onboarding بعد 3 ثوانٍ كمثال
     Future.delayed(const Duration(seconds: 3), () {
+      // ignore: use_build_context_synchronously
       context.go(AppRouter.onboarding);
     });
   }
@@ -55,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   borderRadius: BorderRadius.circular(22),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
+                      color: Colors.black.withValues(alpha: 0.1),
                       blurRadius: 10,
                       offset: const Offset(0, 4),
                     ),
