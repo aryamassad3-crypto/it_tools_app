@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'features/auth/presentation/pages/login_page.dart';
 
 void main() {
-  runApp(const ITToolsApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(
+    const ProviderScope(
+      child: ITToolsApp(),
+    ),
+  );
 }
 
 class ITToolsApp extends StatelessWidget {
@@ -23,7 +29,6 @@ class ITToolsApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      // جعل شاشة تسجيل الدخول هي البداية مؤقتاً للتجربة والتصميم
       home: const LoginPage(),
     );
   }

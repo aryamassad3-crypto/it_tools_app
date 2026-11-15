@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'forgot_password_page.dart';
+import 'register_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,7 +13,7 @@ class _LoginPageState extends State<LoginPage> {
   // مفتاح الفورم للتحقق من صحة المدخلات (Validation)
   final _formKey = GlobalKey<FormState>();
   
-  // وحدات التحكم لحقول الإدخال
+  // وحدات التحكم لحقول الإدخال (فارغة بدون محتوى وهمي)
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -93,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                     textAlign: TextAlign.right,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
-                      hintText: 'noor@devmmnd.com',
+                      hintText: 'example@domain.com',
                       hintStyle: const TextStyle(color: Colors.grey),
                       prefixIcon: const Icon(Icons.email_outlined, color: Colors.grey),
                       border: OutlineInputBorder(
@@ -178,9 +180,16 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 12),
 
-                  // نسيت كلمة المرور
+                  // نسيت كلمة المرور (مربوط بالشاشة)
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ForgotPasswordPage(),
+                        ),
+                      );
+                    },
                     child: const Text(
                       'نسيت كلمة المرور؟',
                       style: TextStyle(
@@ -192,7 +201,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 24),
 
-                  // زر تسجيل الدخول (يرتبط بالفالديشن)
+                  // زر تسجيل الدخول
                   SizedBox(
                     width: double.infinity,
                     height: 50,
@@ -229,7 +238,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 20),
 
-                  // زر المتابعة باستخدام جوجل (أيقونة ملونة على اليمين)
+                  // زر المتابعة باستخدام جوجل
                   SizedBox(
                     width: double.infinity,
                     height: 50,
@@ -272,7 +281,14 @@ class _LoginPageState extends State<LoginPage> {
                         style: TextStyle(color: Colors.grey),
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const RegisterPage(),
+                            ),
+                          );
+                        },
                         child: const Text(
                           'إنشاء حساب',
                           style: TextStyle(
