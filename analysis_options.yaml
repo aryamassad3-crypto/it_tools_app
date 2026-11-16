@@ -1,6 +1,3 @@
-# This file configures the analyzer, which statically analyzes Dart code to
-# check for errors, warnings, and lints.
-
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
@@ -11,18 +8,18 @@ analyzer:
   exclude:
     - "build/**"
     - "android/**"
-    - "ios/**`"
+    - "ios/**"
     - "web/**"
     - "windows/**"
     - "macos/**"
     - "linux/**"
     - "**/*.g.dart"
     - "**/*.freezed.dart"
-    - ios/**
 
 linter:
   rules:
     - prefer_single_quotes
     - prefer_const_constructors
+    - require_trailing_commas
     - avoid_print
     - always_use_package_imports

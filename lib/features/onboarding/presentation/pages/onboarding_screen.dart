@@ -51,7 +51,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       );
     } else {
       // استبدليها بالمسار التالي لاحقاً (مثلاً الشاشة الرئيسية)
-      context.go(AppRouter.login);
+      context.go(AppRouter.home);
     }
   }
 
@@ -145,7 +145,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(Icons.arrow_back_ios_new_rounded, size: 16),
+                        const Icon(Icons.arrow_forward_rounded, size: 16),
                         const SizedBox(width: 8),
                         Text(_currentIndex == 2 ? 'ابدأ التسوق' : 'التالي'),
                       ],
