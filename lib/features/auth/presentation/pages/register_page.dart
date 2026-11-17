@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'login_page.dart';
 import 'otp_verification_page.dart';
 
@@ -26,7 +26,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
     'كلية المعلوماتية - جامعة حلب',
     'كلية الهندسة المدنية - جامعة حلب',
     'المعهد التقاني للحاسوب - حلب',
-    'أخرى'
+    'أخرى',
   ];
 
   @override
@@ -45,9 +45,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
 
     if (!_agreeToTerms) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('يجب الموافقة على الشروط والأحكام أولاً'),
-        ),
+        const SnackBar(content: Text('يجب الموافقة على الشروط والأحكام أولاً')),
       );
       return;
     }
@@ -55,9 +53,8 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => OtpVerificationPage(
-          email: _emailController.text.trim(),
-        ),
+        builder: (context) =>
+            OtpVerificationPage(email: _emailController.text.trim()),
       ),
     );
   }
@@ -89,10 +86,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 24.0,
-            vertical: 12.0,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
           child: Form(
             key: _formKey,
             child: Column(
@@ -219,10 +213,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                   items: _universities.map((uni) {
                     return DropdownMenuItem(
                       value: uni,
-                      child: Text(
-                        uni,
-                        style: const TextStyle(fontSize: 14),
-                      ),
+                      child: Text(uni, style: const TextStyle(fontSize: 14)),
                     );
                   }).toList(),
                   onChanged: (value) {
@@ -275,10 +266,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                     const Expanded(
                       child: Text(
                         'أوافق على الشروط والأحكام وسياسة الخصوصية',
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: Colors.black87,
-                        ),
+                        style: TextStyle(fontSize: 13, color: Colors.black87),
                       ),
                     ),
                   ],
@@ -361,10 +349,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
   }) {
     return InputDecoration(
       hintText: hintText,
-      hintStyle: const TextStyle(
-        color: Colors.grey,
-        fontSize: 14,
-      ),
+      hintStyle: const TextStyle(color: Colors.grey, fontSize: 14),
       prefixIcon: Icon(icon, color: Colors.grey),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),

@@ -9,6 +9,47 @@ part of 'dio_client.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
+@ProviderFor(tokenStorage)
+const tokenStorageProvider = TokenStorageProvider._();
+
+final class TokenStorageProvider
+    extends $FunctionalProvider<TokenStorage, TokenStorage, TokenStorage>
+    with $Provider<TokenStorage> {
+  const TokenStorageProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'tokenStorageProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$tokenStorageHash();
+
+  @$internal
+  @override
+  $ProviderElement<TokenStorage> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  TokenStorage create(Ref ref) {
+    return tokenStorage(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(TokenStorage value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<TokenStorage>(value),
+    );
+  }
+}
+
+String _$tokenStorageHash() => r'23b0f4fbc323ec56119e50446aeaa2c5e3abe772';
+
 @ProviderFor(dio)
 const dioProvider = DioProvider._();
 
@@ -47,4 +88,4 @@ final class DioProvider extends $FunctionalProvider<Dio, Dio, Dio>
   }
 }
 
-String _$dioHash() => r'25a7b23f01a406b86bd6118fffca5dc3b0c4c378';
+String _$dioHash() => r'2302544948df922898b69fa54c3ff22a5606581e';
