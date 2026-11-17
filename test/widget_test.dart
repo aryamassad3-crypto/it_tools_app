@@ -1,30 +1,15 @@
 // This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:it_tools_app/main.dart';
+import 'package:it_tools_app/app/app.dart'; // استدعاء ملف الـ app
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('IT Tools App smoke test', (WidgetTester tester) async {
+    // بناء التطبيق والتحقق من ظهور شاشة الـ Splash والشعار أو النص الافتتاحي
+    await tester.pumpWidget(const ITToolsApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // التحقق من وجود اسم التطبيق "المحيط" في شاشة الـ Splash
+    expect(find.text('المحيط'), findsOneWidget);
   });
 }
