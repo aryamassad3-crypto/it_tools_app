@@ -1,4 +1,7 @@
+
 import 'package:flutter/material.dart';
+import 'register_page.dart';
+import 'forgot_password_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -8,10 +11,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  // مفتاح الفورم للتحقق من صحة المدخلات (Validation)
   final _formKey = GlobalKey<FormState>();
-  
-  // وحدات التحكم لحقول الإدخال
+
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -26,10 +27,11 @@ class _LoginPageState extends State<LoginPage> {
 
   void _submitLogin() {
     if (_formKey.currentState!.validate()) {
-      // هنا تتم عملية إرسال البيانات أو استدعاء الـ BLoC/Provider للتسجيل
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('تم التحقق من البيانات بنجاح، جاري تسجيل الدخول...'),
+          content: Text(
+            'تم التحقق من البيانات بنجاح، جاري تسجيل الدخول...',
+          ),
           backgroundColor: Color(0xFF0578B7),
         ),
       );
@@ -50,7 +52,6 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // 1. الشعار العلوي على اليمين
                   Align(
                     alignment: Alignment.centerRight,
                     child: Image.asset(
@@ -61,7 +62,6 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 32),
 
-                  // العنوان الترحيبي
                   const Text(
                     'أهلاً بعودتك',
                     style: TextStyle(
@@ -72,7 +72,6 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 8),
 
-                  // الوصف التوضيحي البسيط
                   const Text(
                     'سجّل دخولك لمتابعة حسابك.',
                     style: TextStyle(
@@ -82,12 +81,15 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 32),
 
-                  // حقل البريد الإلكتروني مع الفالديشن
                   const Text(
                     'البريد الإلكتروني',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                   const SizedBox(height: 8),
+
                   TextFormField(
                     controller: _emailController,
                     textAlign: TextAlign.right,
@@ -95,22 +97,33 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: InputDecoration(
                       hintText: 'noor@devmmnd.com',
                       hintStyle: const TextStyle(color: Colors.grey),
-                      prefixIcon: const Icon(Icons.email_outlined, color: Colors.grey),
+                      prefixIcon: const Icon(
+                        Icons.email_outlined,
+                        color: Colors.grey,
+                      ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: const BorderSide(color: Colors.grey),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(color: Colors.grey.shade300),
+                        borderSide: BorderSide(
+                          color: Colors.grey.shade300,
+                        ),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
-                        borderSide: const BorderSide(color: Color(0xFF0578B7), width: 2),
+                        borderSide: const BorderSide(
+                          color: Color(0xFF0578B7),
+                          width: 2,
+                        ),
                       ),
                       errorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
-                        borderSide: const BorderSide(color: Colors.red, width: 1),
+                        borderSide: const BorderSide(
+                          color: Colors.red,
+                          width: 1,
+                        ),
                       ),
                     ),
                     validator: (value) {
@@ -125,12 +138,15 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 20),
 
-                  // حقل كلمة المرور مع الفالديشن
                   const Text(
                     'كلمة المرور',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                   const SizedBox(height: 8),
+
                   TextFormField(
                     controller: _passwordController,
                     obscureText: _obscurePassword,
@@ -140,7 +156,9 @@ class _LoginPageState extends State<LoginPage> {
                       hintStyle: const TextStyle(color: Colors.grey),
                       suffixIcon: IconButton(
                         icon: Icon(
-                          _obscurePassword ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                          _obscurePassword
+                              ? Icons.visibility_off_outlined
+                              : Icons.visibility_outlined,
                           color: const Color(0xFF0578B7),
                         ),
                         onPressed: () {
@@ -155,15 +173,23 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(color: Colors.grey.shade300),
+                        borderSide: BorderSide(
+                          color: Colors.grey.shade300,
+                        ),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
-                        borderSide: const BorderSide(color: Color(0xFF0578B7), width: 2),
+                        borderSide: const BorderSide(
+                          color: Color(0xFF0578B7),
+                          width: 2,
+                        ),
                       ),
                       errorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
-                        borderSide: const BorderSide(color: Colors.red, width: 1),
+                        borderSide: const BorderSide(
+                          color: Colors.red,
+                          width: 1,
+                        ),
                       ),
                     ),
                     validator: (value) {
@@ -178,21 +204,31 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 12),
 
-                  // نسيت كلمة المرور
-                  GestureDetector(
-                    onTap: () {},
-                    child: const Text(
-                      'نسيت كلمة المرور؟',
-                      style: TextStyle(
-                        color: Color(0xFF0578B7),
-                        fontSize: 13,
-                        fontWeight: FontWeight.w600,
+                  // الانتقال إلى صفحة استعادة كلمة المرور
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const ForgotPasswordPage(),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        'نسيت كلمة المرور؟',
+                        style: TextStyle(
+                          color: Color(0xFF0578B7),
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                   ),
                   const SizedBox(height: 24),
 
-                  // زر تسجيل الدخول (يرتبط بالفالديشن)
                   SizedBox(
                     width: double.infinity,
                     height: 50,
@@ -216,20 +252,29 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 20),
 
-                  // فاصل (أو)
                   Row(
                     children: [
-                      Expanded(child: Divider(color: Colors.grey.shade300)),
+                      Expanded(
+                        child: Divider(
+                          color: Colors.grey.shade300,
+                        ),
+                      ),
                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Text('أو', style: TextStyle(color: Colors.grey)),
+                        child: Text(
+                          'أو',
+                          style: TextStyle(color: Colors.grey),
+                        ),
                       ),
-                      Expanded(child: Divider(color: Colors.grey.shade300)),
+                      Expanded(
+                        child: Divider(
+                          color: Colors.grey.shade300,
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 20),
 
-                  // زر المتابعة باستخدام جوجل (أيقونة ملونة على اليمين)
                   SizedBox(
                     width: double.infinity,
                     height: 50,
@@ -238,7 +283,9 @@ class _LoginPageState extends State<LoginPage> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        side: BorderSide(color: Colors.grey.shade300),
+                        side: BorderSide(
+                          color: Colors.grey.shade300,
+                        ),
                       ),
                       onPressed: () {},
                       child: Row(
@@ -263,7 +310,6 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 32),
 
-                  // ليس لديك حساب؟ إنشاء حساب
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -271,8 +317,16 @@ class _LoginPageState extends State<LoginPage> {
                         'ليس لديك حساب؟ ',
                         style: TextStyle(color: Colors.grey),
                       ),
-                      GestureDetector(
-                        onTap: () {},
+                      TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const RegisterPage(),
+                            ),
+                          );
+                        },
                         child: const Text(
                           'إنشاء حساب',
                           style: TextStyle(
@@ -285,10 +339,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 12),
 
-                  // تصفح كزائر
                   Center(
-                    child: GestureDetector(
-                      onTap: () {},
+                    child: TextButton(
+                      onPressed: () {},
                       child: const Text(
                         'تصفّح كزائر',
                         style: TextStyle(
@@ -309,7 +362,6 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-// كلاس رسام شعار Google الملون
 class _GoogleLogoPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
@@ -325,7 +377,10 @@ class _GoogleLogoPainter extends CustomPainter {
 
     paint.color = const Color(0xFFEA4335);
     canvas.drawArc(
-      Rect.fromCircle(center: center, radius: radius - strokeWidth / 2),
+      Rect.fromCircle(
+        center: center,
+        radius: radius - strokeWidth / 2,
+      ),
       -2.35,
       1.6,
       false,
@@ -334,7 +389,10 @@ class _GoogleLogoPainter extends CustomPainter {
 
     paint.color = const Color(0xFFFBBC05);
     canvas.drawArc(
-      Rect.fromCircle(center: center, radius: radius - strokeWidth / 2),
+      Rect.fromCircle(
+        center: center,
+        radius: radius - strokeWidth / 2,
+      ),
       2.35,
       1.6,
       false,
@@ -343,7 +401,10 @@ class _GoogleLogoPainter extends CustomPainter {
 
     paint.color = const Color(0xFF34A853);
     canvas.drawArc(
-      Rect.fromCircle(center: center, radius: radius - strokeWidth / 2),
+      Rect.fromCircle(
+        center: center,
+        radius: radius - strokeWidth / 2,
+      ),
       0.75,
       1.6,
       false,
@@ -352,7 +413,10 @@ class _GoogleLogoPainter extends CustomPainter {
 
     paint.color = const Color(0xFF4285F4);
     canvas.drawArc(
-      Rect.fromCircle(center: center, radius: radius - strokeWidth / 2),
+      Rect.fromCircle(
+        center: center,
+        radius: radius - strokeWidth / 2,
+      ),
       -0.05,
       0.85,
       false,
@@ -362,8 +426,14 @@ class _GoogleLogoPainter extends CustomPainter {
     final Paint linePaint = Paint()
       ..color = const Color(0xFF4285F4)
       ..style = PaintingStyle.fill;
+
     canvas.drawRect(
-      Rect.fromLTWH(w * 0.5, h * 0.41, w * 0.48, strokeWidth),
+      Rect.fromLTWH(
+        w * 0.5,
+        h * 0.41,
+        w * 0.48,
+        strokeWidth,
+      ),
       linePaint,
     );
   }
