@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'otp_verification_page.dart';
+import 'package:it_tools_app/features/auth/presentation/pages/otp_verification_page.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -211,11 +211,11 @@ class _RegisterPageState extends State<RegisterPage> {
                           borderRadius: BorderRadius.circular(10),
                           border: Border.all(color: const Color(0xFFCBE4F5)),
                         ),
-                        child: Row(
+                        child: const Row(
                           children: [
-                            const Icon(Icons.card_giftcard, color: Color(0xFF0578B7), size: 20),
-                            const SizedBox(width: 10),
-                            const Expanded(
+                            Icon(Icons.card_giftcard, color: Color(0xFF0578B7), size: 20),
+                            SizedBox(width: 10),
+                            Expanded(
                               child: Text(
                                 'نستخدمها فقط لإرسال عروض وكوبونات خاصة بجامعتك.',
                                 style: TextStyle(color: Color(0xFF0578B7), fontSize: 12),

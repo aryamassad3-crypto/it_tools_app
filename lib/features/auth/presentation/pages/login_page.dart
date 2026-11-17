@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'forgot_password_page.dart';
-import 'register_page.dart';
+import 'package:it_tools_app/features/auth/presentation/pages/forgot_password_page.dart';
+
+import 'package:it_tools_app/features/auth/presentation/pages/register_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -12,7 +13,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   // مفتاح الفورم للتحقق من صحة المدخلات (Validation)
   final _formKey = GlobalKey<FormState>();
-  
+
   // وحدات التحكم لحقول الإدخال (فارغة بدون محتوى وهمي)
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -77,10 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                   // الوصف التوضيحي البسيط
                   const Text(
                     'سجّل دخولك لمتابعة حسابك.',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey,
-                    ),
+                    style: TextStyle(fontSize: 14, color: Colors.grey),
                   ),
                   const SizedBox(height: 32),
 
@@ -97,7 +95,10 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: InputDecoration(
                       hintText: 'example@domain.com',
                       hintStyle: const TextStyle(color: Colors.grey),
-                      prefixIcon: const Icon(Icons.email_outlined, color: Colors.grey),
+                      prefixIcon: const Icon(
+                        Icons.email_outlined,
+                        color: Colors.grey,
+                      ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: const BorderSide(color: Colors.grey),
@@ -108,11 +109,17 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
-                        borderSide: const BorderSide(color: Color(0xFF0578B7), width: 2),
+                        borderSide: const BorderSide(
+                          color: Color(0xFF0578B7),
+                          width: 2,
+                        ),
                       ),
                       errorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
-                        borderSide: const BorderSide(color: Colors.red, width: 1),
+                        borderSide: const BorderSide(
+                          color: Colors.red,
+                          width: 1,
+                        ),
                       ),
                     ),
                     validator: (value) {
@@ -142,7 +149,9 @@ class _LoginPageState extends State<LoginPage> {
                       hintStyle: const TextStyle(color: Colors.grey),
                       suffixIcon: IconButton(
                         icon: Icon(
-                          _obscurePassword ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                          _obscurePassword
+                              ? Icons.visibility_off_outlined
+                              : Icons.visibility_outlined,
                           color: const Color(0xFF0578B7),
                         ),
                         onPressed: () {
@@ -161,11 +170,17 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
-                        borderSide: const BorderSide(color: Color(0xFF0578B7), width: 2),
+                        borderSide: const BorderSide(
+                          color: Color(0xFF0578B7),
+                          width: 2,
+                        ),
                       ),
                       errorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
-                        borderSide: const BorderSide(color: Colors.red, width: 1),
+                        borderSide: const BorderSide(
+                          color: Colors.red,
+                          width: 1,
+                        ),
                       ),
                     ),
                     validator: (value) {
