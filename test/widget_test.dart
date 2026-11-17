@@ -1,17 +1,14 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:it_tools_app/main.dart';
 
 void main() {
-  testWidgets('Basic Flutter widget test', (WidgetTester tester) async {
-    await tester.pumpWidget(
-      const MaterialApp(
-        home: Scaffold(
-          body: Text('IT Tools App'),
-        ),
-      ),
-    );
+  testWidgets('App launches and displays the login page', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(const ITToolsApp());
 
-    expect(find.text('IT Tools App'), findsOneWidget);
+    expect(find.byType(TextFormField), findsNWidgets(2));
+    expect(find.textContaining('noor@devmmnd.com'), findsOneWidget);
   });
 }
