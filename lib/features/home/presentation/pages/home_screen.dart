@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:it_tools_app/core/config/app_router.dart';
 import 'package:it_tools_app/core/theme/app_colors.dart';
 import 'package:it_tools_app/core/theme/app_text_styles.dart';
 import 'package:it_tools_app/core/widgets/custom_bottom_nav_bar.dart';
@@ -66,7 +68,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.go(
+                          AppRouter.categories,
+                        ); // الانتقال للأقسام عند الضغط على عرض الكل
+                      },
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -97,8 +103,14 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       bottomNavigationBar: CustomBottomNavBar(
-        currentIndex: _currentIndex,
-        onTap: (index) => setState(() => _currentIndex = index),
+        currentIndex: 0, // 0 لأننا في الرئيسية
+        onTap: (index) {
+          if (index == 0) {
+            // نحن أساساً في الهوم
+          } else if (index == 1) {
+            context.go(AppRouter.categories); // <--- هنا يتم الانتقال لصفحة الأقسام عند الضغط على أيقونتها في الهوم!
+          }
+        },
       ),
     );
   }
