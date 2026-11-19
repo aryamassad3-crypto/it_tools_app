@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:it_tools_app/core/config/app_router.dart';
 import 'package:it_tools_app/core/theme/app_colors.dart';
 import 'package:it_tools_app/core/theme/app_text_styles.dart';
+import 'package:it_tools_app/features/search/presentation/widgets/filter/filter_bottom_sheet.dart';
 
 class HomeSearchBar extends StatelessWidget {
   const HomeSearchBar({super.key});
@@ -9,7 +12,6 @@ class HomeSearchBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        // 1. حقل البحث (يأخذ المساحة الأكبر على اليمين)
         Expanded(
           child: Container(
             height: 48,
@@ -19,6 +21,8 @@ class HomeSearchBar extends StatelessWidget {
               border: Border.all(color: AppColors.borderDefault, width: 1),
             ),
             child: TextField(
+              readOnly: true,
+              onTap: () => context.push(AppRouter.search),
               textAlign: TextAlign.right,
               style: AppTextStyles.bodyMedium.copyWith(
                 color: AppColors.textPrimary,
@@ -28,13 +32,15 @@ class HomeSearchBar extends StatelessWidget {
                 hintStyle: AppTextStyles.bodyMedium.copyWith(
                   color: AppColors.textTertiary,
                 ),
-                // أيقونة العدسة أصبحت على اليمين (بداية الكتابة) داخل حقل البحث
                 prefixIcon: const Icon(
                   Icons.search_rounded,
                   color: AppColors.textTertiary,
                   size: 22,
                 ),
                 border: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                filled: false,
                 contentPadding: const EdgeInsets.symmetric(
                   horizontal: 16,
                   vertical: 12,
@@ -44,8 +50,6 @@ class HomeSearchBar extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 12),
-
-        // 2. زر الفلتر / التصفية الأزرق (على اليسار)
         Container(
           width: 48,
           height: 48,
@@ -55,7 +59,12 @@ class HomeSearchBar extends StatelessWidget {
           ),
           child: IconButton(
             onPressed: () {
-              // TODO: فتح نافذة الفلترة
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                builder: (_) => const FilterBottomSheet(),
+              );
             },
             icon: const Icon(Icons.tune_rounded, color: Colors.white, size: 22),
           ),

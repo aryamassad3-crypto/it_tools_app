@@ -68,7 +68,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 16),
+              const SizedBox(height: 24),
               Text(
                 'الأقسام',
                 style: AppTextStyles.bodyLarge.copyWith(
@@ -82,6 +82,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
               const SizedBox(height: 16),
               Expanded(
                 child: GridView.builder(
+                  padding: const EdgeInsets.only(bottom: 24),
                   itemCount: categoriesList.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,

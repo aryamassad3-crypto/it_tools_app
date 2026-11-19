@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:it_tools_app/core/config/app_router.dart';
 import 'package:it_tools_app/core/theme/app_colors.dart';
 import 'package:it_tools_app/core/theme/app_text_styles.dart';
 
@@ -50,7 +51,9 @@ class _ProductListHeaderState extends State<ProductListHeader> {
                   color: AppColors.textPrimary,
                 ),
               ),
-              _iconBtn(Icons.search_rounded, () {}),
+              _iconBtn(Icons.search_rounded, () {
+                context.push(AppRouter.search);
+              }),
             ],
           ),
         ),
