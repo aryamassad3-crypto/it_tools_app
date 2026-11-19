@@ -58,10 +58,21 @@ class _CategoriesPageState extends State<CategoriesPage> {
     },
   ];
 
+  String _searchQuery = '';
+
+  List<Map<String, String>> get _filteredCategories {
+    if (_searchQuery.trim().isEmpty) return categoriesList;
+    return categoriesList
+        .where((cat) => cat['title']!.contains(_searchQuery.trim()))
+        .toList();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final filtered = _filteredCategories;
+
     return Scaffold(
-      backgroundColor: const Color(0xFFF4FBFF),
+      backgroundColor: AppColors.pageBg,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -78,12 +89,14 @@ class _CategoriesPageState extends State<CategoriesPage> {
                 ),
               ),
               const SizedBox(height: 16),
-              const CategorySearchBaar(),
+              CategorySearchBaar(
+                onChanged: (val) => setState(() => _searchQuery = val),
+              ),
               const SizedBox(height: 16),
               Expanded(
                 child: GridView.builder(
                   padding: const EdgeInsets.only(bottom: 24),
-                  itemCount: categoriesList.length,
+                  itemCount: filtered.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 12,
@@ -91,7 +104,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                     childAspectRatio: 0.85,
                   ),
                   itemBuilder: (context, index) {
-                    final cat = categoriesList[index];
+                    final cat = filtered[index];
                     return CategoryCard(
                       title: cat['title']!,
                       productCount: cat['count']!,
@@ -113,9 +126,8 @@ class _CategoriesPageState extends State<CategoriesPage> {
       bottomNavigationBar: CustomBottomNavBar(
         currentIndex: 1,
         onTap: (index) {
-          if (index == 0) {
-            context.go(AppRouter.home);
-          }
+          if (index == 0) context.go(AppRouter.home);
+          if (index == 3) context.go(AppRouter.favorites);
         },
       ),
     );

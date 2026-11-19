@@ -4,6 +4,7 @@ import 'package:it_tools_app/features/search/presentation/widgets/filter/filter_
 import 'package:it_tools_app/features/categories/presentation/widgets/product_list/product_grid_card.dart';
 import 'package:it_tools_app/features/categories/presentation/widgets/product_list/product_list_header.dart';
 import 'package:it_tools_app/features/categories/presentation/widgets/product_list/product_list_mock_data.dart';
+import 'package:it_tools_app/features/favorites/presentation/widgets/favorites_mock_data.dart';
 
 class ProductListPage extends StatefulWidget {
   final String categoryName;
@@ -60,11 +61,15 @@ class _ProductListPageState extends State<ProductListPage> {
                   ),
                   itemBuilder: (context, i) {
                     final item = list[i];
+                    item['isFavorite'] = FavoritesMockData.isFavorite(
+                      item['name'],
+                    );
                     return ProductGridCard(
                       product: item,
                       onToggleFavorite: () => setState(() {
-                        item['isFavorite'] = !(item['isFavorite'] ?? false);
+                        FavoritesMockData.toggleFavorite(item);
                       }),
+
                       onAddToCart: () => ScaffoldMessenger.of(context)
                           .showSnackBar(
                             SnackBar(

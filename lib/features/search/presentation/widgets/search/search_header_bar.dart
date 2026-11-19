@@ -7,11 +7,12 @@ class SearchHeaderBar extends StatelessWidget {
   final TextEditingController controller;
   final ValueChanged<String> onChanged;
   final VoidCallback onFilterTap;
-
+  final ValueChanged<String> onSubmitted;
   const SearchHeaderBar({
     super.key,
     required this.controller,
     required this.onChanged,
+    required this.onSubmitted,
     required this.onFilterTap,
   });
 
@@ -32,16 +33,21 @@ class SearchHeaderBar extends StatelessWidget {
               child: Row(
                 children: [
                   const SizedBox(width: 12),
-                  const Icon(
-                    Icons.search_rounded,
-                    color: AppColors.textTertiary,
-                    size: 20,
+                  GestureDetector(
+                    onTap: () => onSubmitted(controller.text),
+                    child: const Icon(
+                      Icons.search_rounded,
+                      color: AppColors.blue,
+                      size: 22,
+                    ),
                   ),
                   const SizedBox(width: 8),
                   Expanded(
                     child: TextField(
                       controller: controller,
                       onChanged: onChanged,
+                      onSubmitted: onSubmitted,
+                      textInputAction: TextInputAction.search,
                       autofocus: true,
                       style: AppTextStyles.bodyMedium.copyWith(
                         color: AppColors.textPrimary,

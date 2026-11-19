@@ -109,6 +109,8 @@ class _HomeScreenState extends State<HomeScreen> {
             // نحن أساساً في الهوم
           } else if (index == 1) {
             context.go(AppRouter.categories); // <--- هنا يتم الانتقال لصفحة الأقسام عند الضغط على أيقونتها في الهوم!
+          } else if (index == 3) {
+            context.go(AppRouter.favorites);
           }
         },
       ),

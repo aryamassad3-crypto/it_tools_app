@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:it_tools_app/features/favorites/presentation/widgets/favorites_mock_data.dart';
 import 'package:it_tools_app/features/home/presentation/widgets/products/product_card.dart';
 
 class HomeProductsGrid extends StatefulWidget {
@@ -40,20 +41,32 @@ class _HomeProductsGridState extends State<HomeProductsGrid> {
         ),
         itemBuilder: (context, index) {
           final item = widget.products[index];
+          final String title = item['title'] as String;
+          final bool isFav = FavoritesMockData.isFavorite(title);
+
           return ProductCard(
-            title: item['title'] as String,
+            title: title,
             category: item['category'] as String,
             price: item['price'] as String,
             oldPrice: item['oldPrice'] as String?,
             imageUrl: item['image'] as String,
             discount: item['discount'] as String?,
-            isFavorite: (item['isFavorite'] as bool?) ?? false,
+            isFavorite: isFav,
             isOutOfStock: (item['isOutOfStock'] as bool?) ?? false,
-            onAddToCart: () =>
-                _showAddedToCartSnackBar(item['title'] as String),
+            onAddToCart: () => _showAddedToCartSnackBar(title),
             onFavoriteToggle: () {
               setState(() {
-                item['isFavorite'] = !((item['isFavorite'] as bool?) ?? false);
+                FavoritesMockData.toggleFavorite({
+                  'name': title,
+                  'category': item['category'],
+                  'price': item['price'],
+                  'oldPrice': item['oldPrice'],
+                  'discount': item['discount'],
+                  'rating': '4.8',
+                  'reviewsCount': '128',
+                  'image': item['image'],
+                  'isAvailable': !((item['isOutOfStock'] as bool?) ?? false),
+                });
               });
             },
           );

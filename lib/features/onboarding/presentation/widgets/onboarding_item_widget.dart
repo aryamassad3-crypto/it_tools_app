@@ -25,7 +25,12 @@ class OnboardingItemWidget extends StatelessWidget {
           // صورة الترحيب ثلاثية الأبعاد
           SizedBox(
             height: 280,
-            child: Image.asset(imagePath, fit: BoxFit.contain),
+            child: Image.asset(
+              imagePath,
+              fit: BoxFit.contain,
+              color: AppColors.surface,
+              colorBlendMode: BlendMode.multiply,
+            ),
           ),
           const SizedBox(height: 40),
           // عنوان الصفحة الرئيسي
