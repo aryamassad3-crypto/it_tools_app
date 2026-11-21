@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../reviews/presentation/pages/rate_products_page.dart';
 
 class OrderDetailsPage extends ConsumerWidget {
   const OrderDetailsPage({super.key});
+
+  // حالة تجريبية مؤقتة إلى حين ربط حالة الطلب بالـ API.
+  // غيّريها إلى false لإخفاء زر التقييم واختبار الطلب غير المكتمل.
+  static const bool isOrderCompleted = false;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -114,9 +119,9 @@ class OrderDetailsPage extends ConsumerWidget {
                             color: const Color(0xFFE3F2FD),
                             borderRadius: BorderRadius.circular(6),
                           ),
-                          child: const Text(
-                            'مؤكد',
-                            style: TextStyle(
+                          child: Text(
+                            isOrderCompleted ? 'مكتمل' : 'مؤكد',
+                            style: const TextStyle(
                               color: Color(0xFF1976D2),
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
@@ -145,20 +150,20 @@ class OrderDetailsPage extends ConsumerWidget {
                       title: 'مؤكد',
                       subtitle: '10 تشرين الثاني · 03:15 م',
                       isCompleted: true,
-                      isCurrent: true,
+                      isCurrent: !isOrderCompleted,
                       hasLine: true,
                     ),
                     _buildTimelineStep(
                       title: 'قيد التوصيل',
                       subtitle: '',
-                      isCompleted: false,
+                      isCompleted: isOrderCompleted,
                       isCurrent: false,
                       hasLine: true,
                     ),
                     _buildTimelineStep(
                       title: 'مكتمل',
                       subtitle: '',
-                      isCompleted: false,
+                      isCompleted: isOrderCompleted,
                       isCurrent: false,
                       hasLine: false,
                     ),
@@ -226,6 +231,53 @@ class OrderDetailsPage extends ConsumerWidget {
                   ],
                 ),
               ),
+
+              // يظهر تقييم المشتريات فقط بعد اكتمال الطلب.
+              if (isOrderCompleted) ...[
+                const SizedBox(height: 12),
+                ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => RateProductsPage(
+                          products: [
+                            ProductRatingItem(
+                              name: 'كيبورد ميكانيكي %75 لاسلكي',
+                              assetPath: 'assets/images/keyboard.png',
+                            ),
+                            ProductRatingItem(
+                              name: 'ماوس لاسلكي صامت M331',
+                              assetPath: 'assets/images/mouse.png',
+                            ),
+                            ProductRatingItem(
+                              name: 'سماعة ألعاب مع مايك',
+                              assetPath: 'assets/images/headset.png',
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.star_outline_rounded),
+                  label: const Text(
+                    'قيّم مشترياتك',
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF0077B6),
+                    foregroundColor: Colors.white,
+                    elevation: 0,
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                ),
+              ],
 
               const SizedBox(height: 16),
 
@@ -306,8 +358,8 @@ class OrderDetailsPage extends ConsumerWidget {
 
               const SizedBox(height: 16),
 
-              // 4. التنبيه
-              Container(
+              // 4. التنبيه: يظهر فقط قبل اكتمال الطلب.
+              if (!isOrderCompleted) Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
                   color: const Color(0xFFFFFBEB),
@@ -338,10 +390,10 @@ class OrderDetailsPage extends ConsumerWidget {
                 ),
               ),
 
-              const SizedBox(height: 16),
+              if (!isOrderCompleted) const SizedBox(height: 16),
 
-              // 5. زر طلب الإلغاء
-              OutlinedButton(
+              // 5. زر طلب الإلغاء: لا يمكن إلغاء طلب مكتمل.
+              if (!isOrderCompleted) OutlinedButton(
                 onPressed: () {
                   _showCancelOrderBottomSheet(context);
                 },
